@@ -14,8 +14,9 @@ export const checkProps = (component, conformingProps) => {
   const propError = checkPropTypes(
     component.propTypes,
     conformingProps,
-    'props',
+    'prop',
     component.name
   );
+  console.log('prop Error: ', propError)
   expect(propError).toBeUndefined();
 }
