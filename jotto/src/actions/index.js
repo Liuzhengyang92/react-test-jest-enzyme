@@ -8,17 +8,17 @@ export const actionTypes = {
   SET_SECRET_WORD: 'SET_SECRET_WORD',
 };
 
-export const guessWord = (guessWord) => {
+export const guessWord = (guessedWord) => {
   return function(dispatch, getState) {
     const secretWord = getState().secretWord;
-    const letterMatchCount = getLetterMatchCount(guessWord, secretWord);
+    const letterMatchCount = getLetterMatchCount(guessedWord, secretWord);
 
     dispatch({
       type: actionTypes.GUESS_WORD,
-      payload: { guessWord, letterMatchCount }
+      payload: { guessedWord, letterMatchCount }
     });
 
-    if (guessWord === secretWord) {
+    if (guessedWord === secretWord) {
       dispatch({ type: actionTypes.CORRECT_GUESS })
     }
   };
