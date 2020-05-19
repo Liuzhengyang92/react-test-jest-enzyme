@@ -5,6 +5,7 @@ import './App.css';
 import GuessedWords from './GuessedWords';
 import Congrats from './Congrats';
 import { getSecretWord } from './actions';
+import Input from './Input';
 
 export class UnconnectedApp extends React.Component {
   /**
@@ -21,7 +22,9 @@ export class UnconnectedApp extends React.Component {
     return (
       <div className="container">
         <h1>Jotto</h1>
+        <div>The secret word is {this.props.secretWord}</div>
         <Congrats success={success} />
+        <Input />
         <GuessedWords guessedWords={guessedWords} />
       </div>
     );
