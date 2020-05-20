@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import successContext from './contexts/successContext';
 import languageContext from './contexts/languageContext';
 import stringsModule from './helpers/strings';
 
 function Input({ secretWord }) {
   const language = React.useContext(languageContext);
+  const [success, setSuccess] = successContext.useSuccess();
   const [ currentGuess, setCurrentGuess ] = React.useState("");
+
+  if (success) { return null }
   return (
     <div data-test='component-input'>
       <form className="form-inline">
@@ -27,6 +31,11 @@ function Input({ secretWord }) {
             evt.preventDefault();
             // TODO: update guessedWords
             // TODO: check against secretWord and update success if needed
+            if (currentGuess === secretWord) {
+              setSuccess(true);
+            }
+
+            // clear input box
             setCurrentGuess("")
           }}
         >
